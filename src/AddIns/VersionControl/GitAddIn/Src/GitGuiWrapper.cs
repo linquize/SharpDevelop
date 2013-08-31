@@ -101,6 +101,11 @@ namespace ICSharpCode.GitAddIn
 			Proc("log", fileName, callback);
 		}
 		
+		public static void Sync(string fileName, Action callback)
+		{
+			Proc("sync", fileName, callback);
+		}
+		
 		public static void Blame(string fileName, Action callback)
 		{
 			Proc("blame", fileName, callback);

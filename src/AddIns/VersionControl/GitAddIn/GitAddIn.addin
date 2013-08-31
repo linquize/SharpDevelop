@@ -41,6 +41,10 @@
 			          label = "Git ${res:AddIns.Subversion.ShowLog}..."
 			          class = "ICSharpCode.GitAddIn.GitLogCommand"/>
 			
+			<MenuItem id = "GitSync"
+			          label = "Git ${res:AddIns.Git.Sync}..."
+			          class = "ICSharpCode.GitAddIn.GitSyncCommand"/>
+			
 			<MenuItem id = "GitBlame"
 			          label = "Git ${res:AddIns.Subversion.Blame}..."
 			          class = "ICSharpCode.GitAddIn.GitBlameCommand"/>
