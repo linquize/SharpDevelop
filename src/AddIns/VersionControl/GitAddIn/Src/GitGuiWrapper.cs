@@ -105,5 +105,10 @@ namespace ICSharpCode.GitAddIn
 		{
 			Proc("blame", fileName, callback);
 		}
+
+		public static void ShowGitSettings(string fileName, Action callback)
+		{
+			Proc("settings", fileName, callback);
+		}
 	}
 }

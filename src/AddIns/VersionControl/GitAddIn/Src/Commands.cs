@@ -108,4 +108,12 @@ namespace ICSharpCode.GitAddIn
 			GitGuiWrapper.Blame(filename, callback);
 		}
 	}
+	
+	public class GitSettingsCommand : GitCommand
+	{
+		protected override void Run(string filename, Action callback)
+		{
+			GitGuiWrapper.ShowGitSettings(filename, callback);
+		}
+	}
 }
