@@ -12,7 +12,7 @@ namespace ICSharpCode.GitAddIn
 {
 	/// <summary>
 	/// Wraps commands opening a dialog window.
-	/// The current implementation launches TortoiseSVN.
+	/// The current implementation launches TortoiseGit.
 	/// </summary>
 	public static class GitGuiWrapper
 	{
