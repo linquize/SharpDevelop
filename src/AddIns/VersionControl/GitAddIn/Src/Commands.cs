@@ -100,4 +100,12 @@ namespace ICSharpCode.GitAddIn
 			GitGuiWrapper.Log(filename, callback);
 		}
 	}
+	
+	public class GitBlameCommand : GitCommand
+	{
+		protected override void Run(string filename, Action callback)
+		{
+			GitGuiWrapper.Blame(filename, callback);
+		}
+	}
 }
