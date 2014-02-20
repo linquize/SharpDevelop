@@ -140,6 +140,7 @@ namespace ICSharpCode.Reporting.WpfReportViewer.Visitor
 			var td = new TextDecorationCollection()	;
 			CheckUnderline(td,exportText);
 			formattedText.SetTextDecorations(td);
+			SetContentAlignment(formattedText, exportText);
 			return formattedText;
 		}
 
@@ -203,6 +204,38 @@ namespace ICSharpCode.Reporting.WpfReportViewer.Visitor
 			}
 		}
 		*/
+
+		static void SetContentAlignment(FormattedText ft, ExportText exportText) {
+			switch (exportText.ContentAlignment) {
+				case System.Drawing.ContentAlignment.TopLeft:
+					ft.TextAlignment = TextAlignment.Left;
+					break;
+				case System.Drawing.ContentAlignment.TopCenter:
+					ft.TextAlignment = TextAlignment.Center;
+					break;
+				case System.Drawing.ContentAlignment.TopRight:
+					ft.TextAlignment = TextAlignment.Right;
+					break;
+				case System.Drawing.ContentAlignment.MiddleLeft:
+					ft.TextAlignment = TextAlignment.Left;
+					break;
+				case System.Drawing.ContentAlignment.MiddleCenter:
+					ft.TextAlignment = TextAlignment.Center;
+					break;
+				case System.Drawing.ContentAlignment.MiddleRight:
+					ft.TextAlignment = TextAlignment.Right;
+					break;
+				case System.Drawing.ContentAlignment.BottomLeft:
+					ft.TextAlignment = TextAlignment.Left;
+					break;
+				case System.Drawing.ContentAlignment.BottomCenter:
+					ft.TextAlignment = TextAlignment.Center;
+					break;
+				case System.Drawing.ContentAlignment.BottomRight:
+					ft.TextAlignment = TextAlignment.Right;
+					break;
+			}
+		}
 		
 		static void SetContentAlignment(TextBlock textBlock,ExportText exportText)
 		{
