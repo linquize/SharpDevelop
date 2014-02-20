@@ -177,7 +177,7 @@
                     <FrameColor>Black</FrameColor>
                     <Items>
                         <BaseTextItem>
-                            <Location>414, 7</Location>
+                            <Location>414, 2</Location>
                             <Size>100, 20</Size>
                             <BackColor>White</BackColor>
                             <Font>Segoe UI, 9.75pt</Font>
