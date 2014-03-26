@@ -34,5 +34,11 @@ namespace ICSharpCode.UnitTesting
 		/// Creates a new test project based on the specified project.
 		/// </summary>
 		ITestProject CreateTestProject(ITestSolution parentSolution, IProject project);
+
+		/// <summary>
+		/// Adds test framework library references to the specified project.
+		/// </summary>
+		/// <param name="project"></param>
+		void AddReference(IProject project);
 	}
 }

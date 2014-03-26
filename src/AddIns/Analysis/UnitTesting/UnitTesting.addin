@@ -99,9 +99,11 @@
 		<Condition name = "SolutionOpen" action="Disable">
 			<ToolbarItem id="Separator2" type="Separator"/>
 			<ToolbarItem id="AddNUnitReference"
+			             type="DropDownButton"
 			             icon="Icons.16x16.Reference"
-			             tooltip="${res:NUnitPad.NUnitPadContent.ReferenceItem}"
-			             class="ICSharpCode.UnitTesting.AddNUnitReferenceCommand"/>
+			             tooltip="${res:NUnitPad.NUnitPadContent.ReferenceItem}">
+				<MenuItem id="UnitTestFrameworkList" type="Builder" class="ICSharpCode.UnitTesting.UnitTestFrameworkListBuilder"/>
+			</ToolbarItem>
 			<ToolbarItem id = "CollapseSeparator" type = "Separator"/>
 			<ToolbarItem id      = "ExpandAll"
 		             icon        = "Icons.16x16.OpenCollection"

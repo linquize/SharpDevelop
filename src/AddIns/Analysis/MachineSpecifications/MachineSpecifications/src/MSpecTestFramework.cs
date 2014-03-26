@@ -44,6 +44,13 @@ namespace ICSharpCode.MachineSpecifications
 			return new MSpecTestProject(parentSolution, project);
 		}
 		
+		public void AddReference(IProject project)
+		{
+			ReferenceProjectItem nunitRef = new ReferenceProjectItem(project, MSpecTestProject.MSpecAssemblyName);
+			ProjectService.AddProjectItem(project, nunitRef);
+			project.Save();
+		}
+		
 		bool IsMSpecAssemblyReference(ProjectItem projectItem)
 		{
 			if (projectItem is ReferenceProjectItem) {

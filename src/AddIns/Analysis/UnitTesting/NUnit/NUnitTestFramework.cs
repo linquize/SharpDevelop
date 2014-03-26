@@ -51,6 +51,13 @@ namespace ICSharpCode.UnitTesting
 			return new NUnitTestProject(project);
 		}
 		
+		public void AddReference(IProject project)
+		{
+			ReferenceProjectItem nunitRef = new ReferenceProjectItem(project, "nunit.framework");
+			ProjectService.AddProjectItem(project, nunitRef);
+			project.Save();
+		}
+		
 		public static bool IsTestMethod(IMethod method)
 		{
 			if (method == null || method.SymbolKind != SymbolKind.Method)

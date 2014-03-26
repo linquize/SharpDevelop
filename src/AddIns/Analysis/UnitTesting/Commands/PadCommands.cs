@@ -17,27 +17,31 @@
 // DEALINGS IN THE SOFTWARE.
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Controls;
 using ICSharpCode.Core;
+using ICSharpCode.SharpDevelop;
 using ICSharpCode.SharpDevelop.Project;
 using ICSharpCode.TreeView;
 
 namespace ICSharpCode.UnitTesting
 {
-	public class AddNUnitReferenceCommand : AbstractMenuCommand
+	public class UnitTestFrameworkListBuilder : IMenuItemBuilder
 	{
-		public void Run(IProject project)
+		public IEnumerable<object> BuildItems(Codon codon, object parameter)
 		{
-			if (project != null) {
-				ReferenceProjectItem nunitRef = new ReferenceProjectItem(project, "nunit.framework");
-				ProjectService.AddProjectItem(project, nunitRef);
-				project.Save();
+			List<object> items = new List<object>();
+			ITestService testService = SD.GetRequiredService<ITestService>();
+			foreach (var framework in testService.TestFrameworks) {
+				MenuItem menuItem = new MenuItem();
+				menuItem.Header = framework.Id;
+				// copy in local variable so that lambda refers to correct loop iteration
+				var fw = framework.TestFramework;
+				menuItem.Click += (o, e) => fw.AddReference(ProjectService.CurrentProject);
+				items.Add(menuItem);
 			}
-		}
-		
-		public override void Run()
-		{
-			Run(ProjectService.CurrentProject);
+			return items;
 		}
 	}
 	
