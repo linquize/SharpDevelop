@@ -7,6 +7,9 @@
 		<NUnitFiles Include="NUnit\*.dll;NUnit\*.exe"/>
 		<NUnitConfigFiles Include="NUnit\*.config"/>
 		<NUnitLibFiles Include="NUnit\lib\*.dll"/>
+		<XUnitFiles Include="xUnit\*.dll;xUnit\*.exe"/>
+		<XUnitConfigFiles Include="xUnit\*.config"/>
+		<XUnitLibFiles Include="xUnit\lib\*.dll"/>
 		<HelpToolFiles Include="Help\*"/>
 		<OpenCoverFiles Include="OpenCover\*"/>
 		<OpenCoverx64Files Include="OpenCover\x64\*"/>
@@ -26,6 +29,9 @@
 		<Copy SourceFiles="@(NUnitFiles)" DestinationFolder="..\..\bin\Tools\NUnit" SkipUnchangedFiles="true"/>
 		<Copy SourceFiles="@(NUnitConfigFiles)" DestinationFolder="..\..\bin\Tools\NUnit" SkipUnchangedFiles="true"/>
 		<Copy SourceFiles="@(NUnitLibFiles)" DestinationFolder="..\..\bin\Tools\NUnit\lib" SkipUnchangedFiles="true"/>
+		<Copy SourceFiles="@(XUnitFiles)" DestinationFolder="..\..\bin\Tools\xUnit" SkipUnchangedFiles="true"/>
+		<Copy SourceFiles="@(XUnitConfigFiles)" DestinationFolder="..\..\bin\Tools\xUnit" SkipUnchangedFiles="true"/>
+		<Copy SourceFiles="@(XUnitLibFiles)" DestinationFolder="..\..\bin\Tools\xUnit\lib" SkipUnchangedFiles="true"/>
 		<Copy SourceFiles="@(ToolFiles)" DestinationFolder="..\..\bin\Tools" SkipUnchangedFiles="true"/>
 		<Copy SourceFiles="@(OpenCoverFiles)" DestinationFolder="..\..\bin\Tools\OpenCover" SkipUnchangedFiles="true"/>
 		<Copy SourceFiles="@(OpenCoverx64Files)" DestinationFolder="..\..\bin\Tools\OpenCover\x64" SkipUnchangedFiles="true"/>

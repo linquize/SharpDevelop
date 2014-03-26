@@ -26,6 +26,9 @@
 		<TestFramework id="nunit"
 		               class="ICSharpCode.UnitTesting.NUnitTestFramework"
 		               supportedProjects=".csproj;.vbproj;.booproj" />
+		<TestFramework id="xunit"
+		               class="ICSharpCode.UnitTesting.XUnitTestFramework"
+		               supportedProjects=".csproj;.vbproj" />
 	</Path>
 	
 	<Path name="/SharpDevelop/TreeNodeFactories">

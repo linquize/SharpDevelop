@@ -105,6 +105,14 @@
       <DependentUpon>UnitTestingOptionsPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Resources\Images.cs" />
+    <Compile Include="XUnit\XUnitConsoleApplication.cs" />
+    <Compile Include="XUnit\XUnitTestClass.cs" />
+    <Compile Include="XUnit\XUnitTestDebugger.cs" />
+    <Compile Include="XUnit\XUnitTestFramework.cs" />
+    <Compile Include="XUnit\XUnitTestMethod.cs" />
+    <Compile Include="XUnit\XUnitTestProject.cs" />
+    <Compile Include="XUnit\XUnitTestResult.cs" />
+    <Compile Include="XUnit\XUnitTestRunner.cs" />
     <None Include="PostBuildEvent.proj" />
     <None Include="UnitTesting.addin">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
@@ -164,6 +172,7 @@
     <Folder Include="Options" />
     <Folder Include="NUnit" />
     <Folder Include="TestRunner" />
+    <Folder Include="XUnit" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Options\UnitTestingOptionsPanel.xaml" />
