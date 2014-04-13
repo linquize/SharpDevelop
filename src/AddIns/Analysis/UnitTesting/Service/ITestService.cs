@@ -34,6 +34,8 @@ namespace ICSharpCode.UnitTesting
 		/// </summary>
 		ITestFramework GetTestFrameworkForProject(IProject project);
 		
+		IEnumerable<TestFrameworkDescriptor> TestFrameworks { get; }
+		
 		IOutputCategory UnitTestMessageView { get; }
 		
 		/// <summary>

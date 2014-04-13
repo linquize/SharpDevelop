@@ -25,19 +25,14 @@ using ICSharpCode.TreeView;
 namespace ICSharpCode.UnitTesting
 {
 	public class AddNUnitReferenceCommand : AbstractMenuCommand
-	{
-		public void Run(IProject project)
-		{
-			if (project != null) {
-				ReferenceProjectItem nunitRef = new ReferenceProjectItem(project, "nunit.framework");
-				ProjectService.AddProjectItem(project, nunitRef);
-				project.Save();
-			}
-		}
-		
+	{		
 		public override void Run()
 		{
-			Run(ProjectService.CurrentProject);
+			var form = new AddUnitTestFramework();
+			if (form.ShowDialog() == true) {
+				System.Windows.MessageBox.Show(form.SelectedTestFramework.Id);
+				//ProjectService.CurrentProject;
+			}
 		}
 	}
 	

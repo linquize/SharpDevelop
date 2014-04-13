@@ -56,6 +56,10 @@
     <Compile Include="Commands\RunningTestsCondition.cs" />
     <Compile Include="Commands\TestableCondition.cs" />
     <Compile Include="Commands\UnitTestCommands.cs" />
+    <Compile Include="Pad\AddUnitTestFramework.xaml.cs">
+      <DependentUpon>AddUnitTestFramework.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Pad\UnitTestNodeFactory.cs" />
     <Compile Include="Service\ITestService.cs" />
     <Compile Include="Model\ITest.cs" />
@@ -87,6 +91,7 @@
     <Compile Include="Service\TestFrameworkDescriptor.cs" />
     <Compile Include="Service\TestFrameworkDoozer.cs" />
     <Compile Include="Service\SDTestService.cs" />
+    <Compile Include="Service\TestFrameworkReferenceSource.cs" />
     <Compile Include="TestRunner\ITestRunner.cs" />
     <Compile Include="TestRunner\TestDebuggerBase.cs" />
     <Compile Include="TestRunner\TestExecutionManager.cs" />
@@ -167,6 +172,7 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Options\UnitTestingOptionsPanel.xaml" />
+    <Page Include="Pad\AddUnitTestFramework.xaml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <Import Project="PostBuildEvent.proj" />

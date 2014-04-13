@@ -45,6 +45,12 @@ namespace ICSharpCode.UnitTesting
 			}
 			return null;
 		}
+		
+		public IEnumerable<TestFrameworkDescriptor> TestFrameworks {
+			get {
+				return testFrameworkDescriptors;
+			}
+		}
 		#endregion
 		
 		#region UnitTestMessageView
