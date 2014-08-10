@@ -66,14 +66,12 @@ namespace ICSharpCode.Reporting.PageBuilder
 		void BuildDetail()
 		{
 			CurrentSection = ReportModel.DetailSection;
-			if(DataSourceContainsData()) {
-				CurrentLocation = DetailStart;
-				var converter = new ContainerConverter(DetailStart);
-				if (IsGrouped()) {
-					BuildGroupedDetails(converter,DetailStart);
-				} else {
-					BuildSortedDetails(converter,DetailStart);
-				}
+			CurrentLocation = DetailStart;
+			var converter = new ContainerConverter(DetailStart);
+			if (IsGrouped()) {
+				BuildGroupedDetails(converter,DetailStart);
+			} else {
+				BuildSortedDetails(converter,DetailStart);
 			}
 		}
 
@@ -194,17 +192,7 @@ namespace ICSharpCode.Reporting.PageBuilder
 		
 		void CreateDataSource(){
 			DataSource = new CollectionDataSource(List, ReportModel.ReportSettings);
-			if (DataSourceContainsData()) {
-				DataSource.Bind();
-			}
-		}
-		
-		
-		bool DataSourceContainsData () {
-			if (DataSource.Count > 0) {
-				return true;
-			}
-			return false;
+			DataSource.Bind();
 		}
 		
 		
