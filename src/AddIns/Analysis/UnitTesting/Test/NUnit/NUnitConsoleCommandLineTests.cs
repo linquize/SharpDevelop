@@ -136,20 +136,7 @@ namespace UnitTesting.Tests.NUnit
 			NUnitConsoleApplication app = new NUnitConsoleApplication(new[] { testProject });
 			app.NoLogo = false;
 			app.ShadowCopy = true;
-			app.Fixture = "TestFixture";
-			app.NoXmlOutputFile = false;
-			
-			string expectedCommandLine = "\"C:\\Projects\\MyTests\\MyTests.dll\" /run=\"TestFixture\"";
-			Assert.AreEqual(expectedCommandLine, app.GetArguments());
-		}
-
-		[Test]
-		public void TestNamespace()
-		{
-			NUnitConsoleApplication app = new NUnitConsoleApplication(new[] { testProject });
-			app.NoLogo = false;
-			app.ShadowCopy = true;
-			app.NamespaceFilter = "TestFixture";
+			app.TestList = new string[] { "TestFixture" };
 			app.NoXmlOutputFile = false;
 			
 			string expectedCommandLine = "\"C:\\Projects\\MyTests\\MyTests.dll\" /run=\"TestFixture\"";
@@ -188,11 +175,23 @@ namespace UnitTesting.Tests.NUnit
 			NUnitConsoleApplication app = new NUnitConsoleApplication(new[] { testProject });
 			app.NoLogo = false;
 			app.ShadowCopy = true;
-			app.Fixture = "TestFixture";
-			app.Test = "Test";
+			app.TestList = new string[] { "TestFixture.Test" };
 			app.NoXmlOutputFile = false;
 			
 			string expectedCommandLine = "\"C:\\Projects\\MyTests\\MyTests.dll\" /run=\"TestFixture.Test\"";
+			Assert.AreEqual(expectedCommandLine, app.GetArguments());
+		}
+		
+		[Test]
+		public void TestMultipleMethods()
+		{
+			NUnitConsoleApplication app = new NUnitConsoleApplication(new[] { testProject });
+			app.NoLogo = false;
+			app.ShadowCopy = true;
+			app.TestList = new string[] { "TestFixture.Test1", "TestFixture.Test2" };
+			app.NoXmlOutputFile = false;
+			
+			string expectedCommandLine = "\"C:\\Projects\\MyTests\\MyTests.dll\" /run=\"TestFixture.Test1,TestFixture.Test2\"";
 			Assert.AreEqual(expectedCommandLine, app.GetArguments());
 		}
 		

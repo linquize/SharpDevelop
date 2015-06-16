@@ -44,19 +44,25 @@ namespace ICSharpCode.UnitTesting
 		
 		void Initialize(IEnumerable<ITest> selectedTests)
 		{
-			// TODO: support running multiple tests
-			ITest test = selectedTests.FirstOrDefault();
-			this.project = test.ParentProject.Project;
-			Assemblies.Add(project.OutputAssemblyFullPath);
-			if (test is TestNamespace) {
-				NamespaceFilter = ((TestNamespace)test).NamespaceName;
-			} else if (test is NUnitTestClass) {
-				var testClass = (NUnitTestClass)test;
-				Fixture = testClass.ReflectionName;
-			} else if (test is NUnitTestMethod) {
-				var testMethod = (NUnitTestMethod)test;
-				Fixture = testMethod.FixtureReflectionName;
-				Test = testMethod.MethodNameWithDeclaringTypeForInheritedTests;
+			var testList = new List<string>();
+			this.TestList = testList;
+			foreach (ITest test in selectedTests)
+			{
+				string name;
+				this.project = test.ParentProject.Project;
+				if (!Assemblies.Contains(project.OutputAssemblyFullPath))
+					Assemblies.Add(project.OutputAssemblyFullPath);
+				if (test is TestNamespace) {
+					name = ((TestNamespace)test).NamespaceName;
+				} else if (test is NUnitTestClass) {
+					var testClass = (NUnitTestClass)test;
+					name = testClass.ReflectionName;
+				} else if (test is NUnitTestMethod) {
+					var testMethod = (NUnitTestMethod)test;
+					name = testMethod.FixtureReflectionName + "." + testMethod.MethodNameWithDeclaringTypeForInheritedTests;
+				} else
+					continue;
+				testList.Add(name);
 			}
 		}
 		
@@ -146,25 +152,14 @@ namespace ICSharpCode.UnitTesting
 		public bool NoXmlOutputFile = true;
 		
 		/// <summary>
-		/// Fixture to test. Null = test all fixtures.
+		/// Selected tests appended to a list
 		/// </summary>
-		public string Fixture;
-		
-		/// <summary>
-		/// Test to run. Null = run all tests. Only valid together with the Fixture property.
-		/// </summary>
-		public string Test;
+		public IEnumerable<string> TestList;
 		
 		/// <summary>
 		/// Pipe to write test results to.
 		/// </summary>
 		public string ResultsPipe;
-		
-		/// <summary>
-		/// The namespace that tests need to be a part of if they are to 
-		/// be run.
-		/// </summary>
-		public string NamespaceFilter;
 		
 		IProject project;
 		
@@ -226,22 +221,26 @@ namespace ICSharpCode.UnitTesting
 				b.Append(ResultsPipe);
 				b.Append('"');
 			}
-			string run = null;
-			if (NamespaceFilter != null) {
-				run = NamespaceFilter;
-			} else if (Fixture != null) {
-				if (Test != null) {
-					run = Fixture + "." + Test;
-				} else {
-					run = Fixture;
+			if (this.TestList.Any()) {
+				if (this.TestList.Count() > 100) {
+					string tempFile = Path.GetTempFileName();
+					b.Append(" /runlist=\"");
+					b.Append(tempFile);
+					b.Append('"');
+					File.WriteAllLines(tempFile, this.TestList);
 				}
-			} else if (Test != null) {
-				run = Test;
-			}
-			if (run != null) {
-				b.Append(" /run=\"");
-				b.Append(run);
-				b.Append('"');
+				else {
+					b.Append(" /run=\"");
+					bool first = true;
+					foreach (string run in this.TestList) {
+						if (!first)
+							b.Append(',');
+						else
+							first = false;
+						b.Append(run);
+					}
+					b.Append('"');
+				}
 			}
 			return b.ToString();
 		}
